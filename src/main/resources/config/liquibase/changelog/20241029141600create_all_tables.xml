@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+  <!-- Tabla Preceptor -->
+  <changeSet id="20241029141600-1" author="kiara">
+    <createTable tableName="preceptor">
+      <column name="dni" type="VARCHAR(20)">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="nombre" type="VARCHAR(100)"/>
+      <column name="apellido" type="VARCHAR(100)"/>
+      <column name="email" type="VARCHAR(100)"/>
+    </createTable>
+  </changeSet>
+
+  <!-- Tabla Profesor -->
+  <changeSet id="20241029141600-2" author="kiara">
+    <createTable tableName="profesor">
+      <column name="dni" type="VARCHAR(20)">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="nombre" type="VARCHAR(100)"/>
+      <column name="apellido" type="VARCHAR(100)"/>
+      <column name="email" type="VARCHAR(100)"/>
+    </createTable>
+  </changeSet>
+
+  <!-- Tabla Alumno -->
+  <changeSet id="20241029141600-3" author="kiara">
+    <createTable tableName="alumno">
+      <column name="dni" type="VARCHAR(20)">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="nombre" type="VARCHAR(100)"/>
+      <column name="apellido" type="VARCHAR(100)"/>
+      <column name="email" type="VARCHAR(100)"/>
+      <column name="preceptor_dni" type="VARCHAR(20)">
+        <constraints nullable="false" foreignKeyName="fk_alumno_preceptor"
+                     referencedTableName="preceptor" referencedColumnNames="dni"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <!-- Tabla Materia -->
+  <changeSet id="20241029141600-4" author="kiara">
+    <createTable tableName="materia">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="nombre" type="VARCHAR(100)"/>
+    </createTable>
+  </changeSet>
+
+  <!-- Tabla Horario -->
+  <changeSet id="20241029141600-5" author="kiara">
+    <createTable tableName="horario">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="dia" type="VARCHAR(50)"/>
+      <column name="hora_inicio" type="TIME"/>
+      <column name="hora_fin" type="TIME"/>
+      <column name="materia_id" type="BIGINT">
+        <constraints nullable="false" foreignKeyName="fk_horario_materia"
+                     referencedTableName="materia" referencedColumnNames="id"/>
+      </column>
+      <column name="profesor_dni" type="VARCHAR(20)">
+        <constraints nullable="false" foreignKeyName="fk_horario_profesor"
+                     referencedTableName="profesor" referencedColumnNames="dni"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <!-- Tabla Faltas -->
+  <changeSet id="20241029141600-6" author="kiara">
+    <createTable tableName="faltas">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="fecha" type="DATE"/>
+      <column name="justificada" type="BOOLEAN"/>
+      <column name="alumno_dni" type="VARCHAR(20)">
+        <constraints nullable="false" foreignKeyName="fk_faltas_alumno"
+                     referencedTableName="alumno" referencedColumnNames="dni"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <!-- Tabla Notas -->
+  <changeSet id="20241029141600-7" author="kiara">
+    <createTable tableName="notas">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="nota" type="DECIMAL(3, 2)"/>
+      <column name="fecha" type="DATE"/>
+      <column name="alumno_dni" type="VARCHAR(20)">
+        <constraints nullable="false" foreignKeyName="fk_notas_alumno"
+                     referencedTableName="alumno" referencedColumnNames="dni"/>
+      </column>
+      <column name="materia_id" type="BIGINT">
+        <constraints nullable="false" foreignKeyName="fk_notas_materia"
+                     referencedTableName="materia" referencedColumnNames="id"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <!-- Tabla Mesas de Examen -->
+  <changeSet id="20241029141600-8" author="kiara">
+    <createTable tableName="mesas_examen">
+      <column name="id" type="BIGINT" autoIncrement="true">
+        <constraints primaryKey="true" nullable="false"/>
+      </column>
+      <column name="fecha" type="DATE"/>
+      <column name="materia_id" type="BIGINT">
+        <constraints nullable="false" foreignKeyName="fk_mesa_materia"
+                     referencedTableName="materia" referencedColumnNames="id"/>
+      </column>
+      <column name="profesor_dni" type="VARCHAR(20)">
+        <constraints nullable="false" foreignKeyName="fk_mesa_profesor"
+                     referencedTableName="profesor" referencedColumnNames="dni"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+  <!-- Tabla Alumno_MesasExamen para relación many-to-many -->
+  <changeSet id="20241029141600-9" author="kiara">
+    <createTable tableName="alumno_mesas_examen">
+      <column name="alumno_dni" type="VARCHAR(20)">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_alumno_mesas_examen"
+                     foreignKeyName="fk_alumno_mesas_examen_alumno" referencedTableName="alumno" referencedColumnNames="dni"/>
+      </column>
+      <column name="mesa_examen_id" type="BIGINT">
+        <constraints nullable="false" primaryKey="true" primaryKeyName="pk_alumno_mesas_examen"
+                     foreignKeyName="fk_alumno_mesas_examen_mesa" referencedTableName="mesas_examen" referencedColumnNames="id"/>
+      </column>
+    </createTable>
+  </changeSet>
+
+</databaseChangeLog>
