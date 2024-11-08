@@ -1,6 +1,7 @@
 package com.mycompany.myapp.domain;
 
 import jakarta.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -14,7 +15,7 @@ public class Falta {
 
     @Column(name = "fecha", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date fecha;
+    private LocalDate fecha;
 
     @Column(name = "justificada", nullable = false)
     private boolean justificada;
@@ -26,8 +27,8 @@ public class Falta {
     // Constructor vacío
     public Falta() {}
 
-    // Constructor con parámetros
-    public Falta(Date fecha, boolean justificada, Alumno alumno) {
+    public Falta(Long id, LocalDate fecha, boolean justificada, Alumno alumno) {
+        this.id = id;
         this.fecha = fecha;
         this.justificada = justificada;
         this.alumno = alumno;
@@ -42,11 +43,11 @@ public class Falta {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 

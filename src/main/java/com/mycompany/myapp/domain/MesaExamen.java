@@ -1,7 +1,7 @@
 package com.mycompany.myapp.domain;
 
 import jakarta.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -16,7 +16,7 @@ public class MesaExamen {
 
     @Column(name = "fecha", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date fecha;
+    private LocalDate fecha;
 
     @ManyToOne
     @JoinColumn(name = "materia_id", nullable = false)
@@ -37,11 +37,12 @@ public class MesaExamen {
     // Constructor vacío
     public MesaExamen() {}
 
-    // Constructor con parámetros
-    public MesaExamen(Date fecha, Materia materia, Profesor profesor) {
+    public MesaExamen(Long id, LocalDate fecha, Materia materia, Profesor profesor, Set<Alumno> alumnos) {
+        this.id = id;
         this.fecha = fecha;
         this.materia = materia;
         this.profesor = profesor;
+        this.alumnos = alumnos;
     }
 
     // Getters y Setters
@@ -53,11 +54,11 @@ public class MesaExamen {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 

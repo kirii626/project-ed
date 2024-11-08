@@ -1,7 +1,7 @@
 package com.mycompany.myapp.domain;
 
 import jakarta.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 @Entity
@@ -17,7 +17,7 @@ public class Nota {
 
     @Column(name = "fecha", nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date fecha;
+    private LocalDate fecha;
 
     @ManyToOne
     @JoinColumn(name = "alumno_dni", nullable = false)
@@ -30,8 +30,8 @@ public class Nota {
     // Constructor vacío
     public Nota() {}
 
-    // Constructor con parámetros
-    public Nota(Double valor, Date fecha, Alumno alumno, Materia materia) {
+    public Nota(Long id, Double valor, LocalDate fecha, Alumno alumno, Materia materia) {
+        this.id = id;
         this.valor = valor;
         this.fecha = fecha;
         this.alumno = alumno;
@@ -55,11 +55,11 @@ public class Nota {
         this.valor = valor;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
