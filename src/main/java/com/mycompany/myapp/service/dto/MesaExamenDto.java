@@ -5,7 +5,6 @@ import java.util.List;
 
 public class MesaExamenDto {
 
-    private Long id;
     private LocalDate fecha;
 
     // Relación con Materia (solo el ID o el nombre de la materia)
@@ -17,15 +16,6 @@ public class MesaExamenDto {
 
     // Relación con Alumnos (solo los DNIs)
     private List<String> alumnosDni;
-
-    // Getters y Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public LocalDate getFecha() {
         return fecha;
@@ -71,8 +61,6 @@ public class MesaExamenDto {
     public String toString() {
         return (
             "MesaExamenDTO{" +
-            "id=" +
-            id +
             ", fecha=" +
             fecha +
             ", materiaId=" +

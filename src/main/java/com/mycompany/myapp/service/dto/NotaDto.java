@@ -9,14 +9,14 @@ public class NotaDto {
     private Double nota;
     private LocalDate fecha;
 
-    private Long alumnoId; // ID del alumno al que pertenece esta nota
+    private String alumnoId; // ID del alumno al que pertenece esta nota
     private Long materiaId; // ID de la materia a la que pertenece esta nota
 
     // Constructores
 
     public NotaDto() {}
 
-    public NotaDto(Long id, Double nota, LocalDate fecha, Long alumnoId, Long materiaId) {
+    public NotaDto(Long id, Double nota, LocalDate fecha, String alumnoId, Long materiaId) {
         this.id = id;
         this.nota = nota;
         this.fecha = fecha;
@@ -49,11 +49,11 @@ public class NotaDto {
         this.fecha = fecha;
     }
 
-    public Long getAlumnoId() {
+    public String getAlumnoId() {
         return alumnoId;
     }
 
-    public void setAlumnoId(Long alumnoId) {
+    public void setAlumnoId(String alumnoId) {
         this.alumnoId = alumnoId;
     }
 

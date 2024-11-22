@@ -1,4 +1,4 @@
-package com.mycompany.myapp.web;
+package com.mycompany.myapp.web.rest;
 
 import com.mycompany.myapp.service.FaltaService;
 import com.mycompany.myapp.service.dto.FaltaDto;
