@@ -96,7 +96,7 @@
       <column name="id" type="BIGINT" autoIncrement="true">
         <constraints primaryKey="true" nullable="false"/>
       </column>
-      <column name="nota" type="DECIMAL(3, 2)"/>
+      <column name="valor" type="DECIMAL(3, 2)"/>
       <column name="fecha" type="DATE"/>
       <column name="alumno_dni" type="VARCHAR(20)">
         <constraints nullable="false" foreignKeyName="fk_notas_alumno"
