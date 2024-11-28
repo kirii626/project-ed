@@ -56,4 +56,8 @@ public class MesaExamenService {
         }
         mesaExamenRepository.deleteById(id);
     }
+
+    public List<Long> findAllMesaExamen(String alumnoDni) {
+        return mesaExamenRepository.findIdsByAlumnoDni(alumnoDni);
+    }
 }

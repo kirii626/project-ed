@@ -6,19 +6,19 @@ import java.util.Objects;
 public class NotaDto {
 
     private Long id;
-    private Double nota;
+    private Double valor;
     private LocalDate fecha;
 
-    private String alumnoId; // ID del alumno al que pertenece esta nota
-    private Long materiaId; // ID de la materia a la que pertenece esta nota
+    private String alumnoId; // ID del alumno al que pertenece esta valor
+    private Long materiaId; // ID de la materia a la que pertenece esta valor
 
     // Constructores
 
     public NotaDto() {}
 
-    public NotaDto(Long id, Double nota, LocalDate fecha, String alumnoId, Long materiaId) {
+    public NotaDto(Long id, Double valor, LocalDate fecha, String alumnoId, Long materiaId) {
         this.id = id;
-        this.nota = nota;
+        this.valor = valor;
         this.fecha = fecha;
         this.alumnoId = alumnoId;
         this.materiaId = materiaId;
@@ -33,12 +33,12 @@ public class NotaDto {
         this.id = id;
     }
 
-    public Double getNota() {
-        return nota;
+    public Double getValor() {
+        return valor;
     }
 
-    public void setNota(Double nota) {
-        this.nota = nota;
+    public void setValor(Double valor) {
+        this.valor = valor;
     }
 
     public LocalDate getFecha() {
@@ -83,7 +83,7 @@ public class NotaDto {
     @Override
     public String toString() {
         return (
-            "NotaDTO{" + "id=" + id + ", nota=" + nota + ", fecha=" + fecha + ", alumnoId=" + alumnoId + ", materiaId=" + materiaId + '}'
+            "NotaDTO{" + "id=" + id + ", valor=" + valor + ", fecha=" + fecha + ", alumnoId=" + alumnoId + ", materiaId=" + materiaId + '}'
         );
     }
 }

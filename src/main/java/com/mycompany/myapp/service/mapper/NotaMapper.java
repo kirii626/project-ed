@@ -11,13 +11,13 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface NotaMapper {
     // Mapea de entidad a DTO
-    @Mapping(source = "valor", target = "nota")
+    @Mapping(source = "valor", target = "valor")
     @Mapping(source = "alumno.dni", target = "alumnoId")
     @Mapping(source = "materia.id", target = "materiaId")
     NotaDto toDto(Nota nota);
 
     // Mapea de DTO a entidad
-    @Mapping(source = "nota", target = "valor")
+    @Mapping(source = "valor", target = "valor")
     @Mapping(target = "alumno", expression = "java(mapAlumno(notaDto.getAlumnoId()))")
     @Mapping(target = "materia", expression = "java(mapMateria(notaDto.getMateriaId()))")
     Nota toEntity(NotaDto notaDto);

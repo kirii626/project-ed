@@ -59,4 +59,9 @@ public class FaltaService {
         }
         faltaRepository.deleteById(id);
     }
+
+    public Integer findAllFaltas(String dni) {
+        List<Falta> faltas = faltaRepository.findByAlumnoDni(dni);
+        return (faltas != null) ? faltas.size() : 0;
+    }
 }
